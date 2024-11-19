@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from acs.caller import OutboundCall
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("voicerag")
+logger = logging.getLogger("phonecalling")
 
 async def create_app():
     if not os.environ.get("RUNNING_IN_PRODUCTION"):
