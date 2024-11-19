@@ -24,4 +24,4 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY . .
 EXPOSE $PORT
-ENTRYPOINT [ "gunicorn", "app:app", "-b 0.0.0.0:8000", "--worker-class",  "aiohttp.GunicornWebWorker", "--reload", "--access-logfile", "-" ]
+ENTRYPOINT [ "gunicorn", "app:create_app", "-b 0.0.0.0:8000", "--worker-class",  "aiohttp.GunicornWebWorker", "--reload", "--access-logfile", "-" ]
