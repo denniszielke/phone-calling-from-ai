@@ -1,7 +1,8 @@
 import logging
 import os
 from pathlib import Path
-
+import requests
+import json
 from aiohttp import web
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import AzureDeveloperCliCredential, DefaultAzureCredential
@@ -13,21 +14,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("phonecalling")
 
 async def create_app():
-    if not os.environ.get("RUNNING_IN_PRODUCTION"):
-        logger.info("Running in development mode, loading from .env file")
-        load_dotenv()
+
+    load_dotenv()
 
     app = web.Application()
 
-    if (os.environ.get("ACS_TARGET_NUMBER") is not None and
-            os.environ.get("ACS_SOURCE_NUMBER") is not None and
-            os.environ.get("ACS_CONNECTION_STRING") is not None and
-            os.environ.get("ACS_CALLBACK_PATH") is not None):
+    if (os.environ.get("ACS_SOURCE_NUMBER") is not None and
+        os.environ.get("ACS_CONNECTION_STRING") is not None):
         caller = OutboundCall(
-            os.environ.get("ACS_TARGET_NUMBER"),
             os.environ.get("ACS_SOURCE_NUMBER"),
             os.environ.get("ACS_CONNECTION_STRING"),
-            os.environ.get("ACS_CALLBACK_PATH"),
+            os.environ.get("CONTAINER_APP_HOSTNAME") + "/acs",
         )
         caller.attach_to_app(app, "/acs")
 
@@ -46,7 +43,15 @@ async def create_app():
 
     async def call(request):
         if (caller is not None):
-            await caller.call()
+
+            payload = await request.json()
+            number = payload.get('number')
+            if number is None:
+                return web.Response(text="Missing 'number' in request", status=400)
+            text = payload.get('text')
+            if text is None:
+                return web.Response(text="Missing 'text' in request", status=400)
+            await caller.call(target_number=number, text=text)
             return web.Response(text="Created outbound call")
         else:
             return web.Response(text="Outbound calling is not configured")

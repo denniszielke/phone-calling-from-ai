@@ -20,17 +20,19 @@ import requests
 
 class OutboundCall:
     target_number: str
+    target_text: str
     source_number: str
     acs_connection_string: str
     acs_callback_path: str
 
-    def __init__(self, target_number: str, source_number:str, acs_connection_string: str, acs_callback_path: str):
-        self.target_number = target_number
+    def __init__(self, source_number:str, acs_connection_string: str, acs_callback_path: str):
         self.source_number = source_number
         self.acs_connection_string = acs_connection_string
         self.acs_callback_path = acs_callback_path
     
-    async def call(self):
+    async def call(self, target_number: str, text: str):
+        self.target_number = target_number
+        self.target_text = text
         self.call_automation_client = CallAutomationClient.from_connection_string(self.acs_connection_string)
         self.target_participant = PhoneNumberIdentifier(self.target_number)
         self.source_caller = PhoneNumberIdentifier(self.source_number)
@@ -61,7 +63,7 @@ class OutboundCall:
                 call_connection_client.play_media_to_all(my_file)
 
             # text_to_play = "Welcome to Contoso"
-
+            #https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/communication-services/quickstarts/call-automation/includes/quickstart-make-an-outbound-call-using-callautomation-python.md
             # # Provide SourceLocale and VoiceKind to select an appropriate voice. 
             # play_source = TextSource(
             #     text=text_to_play, source_locale="en-US", voice_kind=VoiceKind.FEMALE
