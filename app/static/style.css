@@ -1,0 +1,72 @@
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    background-image: url('../static/light-robot.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-top: 50px;
+    background-color: rgba(10, 65, 161, 0);
+    /* Slightly transparent background */
+    display: inline-block;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #2608e7e9;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff80;
+    /* Blue color */
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #1800b347;
+}
+
+#statusMessage {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+#report {
+    margin-top: 30px;
+    text-align: left;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+input[type="text"] {
+    width: 280px;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
