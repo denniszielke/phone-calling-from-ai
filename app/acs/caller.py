@@ -59,7 +59,7 @@ class OutboundCall:
             if event.type == "Microsoft.Communication.CallConnected":
                 print("Call connected")
                 print(call_connection_id)
-                my_file = FileSource(url="https://www2.cs.uic.edu/~i101/SoundFiles/CantinaBand60.wav")
+                my_file = FileSource(url="https://github.com/denniszielke/phone-calling-from-ai/raw/refs/heads/main/app/acs/thankyou.wav")
                 call_connection_client.play_media_to_all(my_file)
 
             # text_to_play = "Welcome to Contoso"
