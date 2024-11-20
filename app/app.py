@@ -22,9 +22,10 @@ async def create_app():
     if (os.environ.get("ACS_SOURCE_NUMBER") is not None and
         os.environ.get("ACS_CONNECTION_STRING") is not None):
         caller = OutboundCall(
-            os.environ.get("ACS_SOURCE_NUMBER"),
-            os.environ.get("ACS_CONNECTION_STRING"),
-            "https://" + os.environ.get("CONTAINER_APP_HOSTNAME") + "/acs",
+            source_number=os.environ.get("ACS_SOURCE_NUMBER"),
+            acs_connection_string=os.environ.get("ACS_CONNECTION_STRING"),
+            acs_callback_path="https://" + os.environ.get("CONTAINER_APP_HOSTNAME") + "/acs",
+            ai_endpoint_url=os.environ.get("AI_ENDPOINT")
         )
         caller.attach_to_app(app, "/acs")
 
