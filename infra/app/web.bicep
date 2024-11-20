@@ -47,11 +47,6 @@ resource app 'Microsoft.App/containerApps@2023-04-01-preview' = {
           keyVaultUrl: '${keyVault.properties.vaultUri}secrets/acsconnectionstring'
           identity: userIdentity.id
         }
-        {
-          name: 'aiserviceendpoint'
-          keyVaultUrl: '${keyVault.properties.vaultUri}secrets/aiserviceendpoint'
-          identity: userIdentity.id
-        }       
       ]
     }
     template: {
@@ -86,10 +81,6 @@ resource app 'Microsoft.App/containerApps@2023-04-01-preview' = {
             {
               name: 'ACS_CONNECTION_STRING'
               secretRef: 'acsconnectionstring'
-            }
-            {
-              name: 'AI_ENDPOINT'
-              secretRef: 'aiserviceendpoint'
             }
           ]
           resources: {

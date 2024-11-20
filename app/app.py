@@ -24,8 +24,7 @@ async def create_app():
         caller = OutboundCall(
             source_number=os.environ.get("ACS_SOURCE_NUMBER"),
             acs_connection_string=os.environ.get("ACS_CONNECTION_STRING"),
-            acs_callback_path="https://" + os.environ.get("CONTAINER_APP_HOSTNAME") + "/acs",
-            ai_endpoint_url=os.environ.get("AI_ENDPOINT")
+            acs_callback_path="https://" + os.environ.get("CONTAINER_APP_HOSTNAME") + "/acs"
         )
         caller.attach_to_app(app, "/acs")
 

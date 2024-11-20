@@ -14,9 +14,6 @@ value: the acs source number
 name: acsconnectionstring
 value: the acs connection string
 
-name: aiserviceendpoint
-value: the ai service endpoint
-
 5.) deploy container apps with script
 
 ## Deployment scripts

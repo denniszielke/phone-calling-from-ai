@@ -24,13 +24,11 @@ class OutboundCall:
     source_number: str
     acs_connection_string: str
     acs_callback_path: str
-    ai_endpoint: str
 
-    def __init__(self, source_number:str, acs_connection_string: str, acs_callback_path: str, ai_endpoint_url: str):
+    def __init__(self, source_number:str, acs_connection_string: str, acs_callback_path: str):
         self.source_number = source_number
         self.acs_connection_string = acs_connection_string
         self.acs_callback_path = acs_callback_path
-        self.ai_endpoint = ai_endpoint_url
     
     async def call(self, target_number: str, text: str):
         self.target_number = target_number
@@ -40,8 +38,7 @@ class OutboundCall:
         self.source_caller = PhoneNumberIdentifier(self.source_number)
         call_connection_properties = self.call_automation_client.create_call(self.target_participant, 
                                                                     self.acs_callback_path,
-                                                                    source_caller_id_number=self.source_caller,
-                                                                    cognitive_services_endpoint=self.ai_endpoint)
+                                                                    source_caller_id_number=self.source_caller)
 
     async def _outbound_call_handler(self, request):
         print("Outbound call handler")
