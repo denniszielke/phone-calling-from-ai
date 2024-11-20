@@ -59,17 +59,17 @@ class OutboundCall:
                 print(call_connection_id)
                 my_file = FileSource(url="https://github.com/denniszielke/phone-calling-from-ai/raw/refs/heads/main/app/acs/thankyou.wav")
                 await call_connection_client.play_media_to_all(my_file)
-
+                call_connection_client.hang_up(is_for_everyone=True)
             #https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/communication-services/quickstarts/call-automation/includes/quickstart-make-an-outbound-call-using-callautomation-python.md
                 # Provide SourceLocale and VoiceKind to select an appropriate voice. 
-                print("Playing text to target participant")
-                play_source = TextSource(
-                    text=self.target_text, source_locale="en-US", voice_kind=VoiceKind.FEMALE
-                )
-                play_to = [target_participant]
-                await call_connection_client.get_call_connection(call_connection_id).play_media(
-                    play_source=play_source, play_to=play_to
-                )
+                # print("Playing text to target participant")
+                # play_source = TextSource(
+                #     text=self.target_text, source_locale="en-US", voice_kind=VoiceKind.FEMALE
+                # )
+                # play_to = [target_participant]
+                # await call_connection_client.get_call_connection(call_connection_id).play_media(
+                #     play_source=play_source, play_to=play_to
+                # )
 
     def attach_to_app(self, app, path):
         app.router.add_post(path, self._outbound_call_handler)
