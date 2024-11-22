@@ -54,7 +54,7 @@ class OutboundCall:
             if event.type == "Microsoft.Communication.CallConnected":
                 print("Call connected")
                 print(call_connection_id)
-                my_file = FileSource(url="https://github.com/denniszielke/phone-calling-from-ai/raw/refs/heads/main/app/acs/thankyou.wav")
+                my_file = FileSource(url="http://localhost:8000/static/threattrigger.wav")
                 await call_connection_client.play_media_to_all(my_file)
                 call_connection_client.hang_up(is_for_everyone=True)
             #https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/communication-services/quickstarts/call-automation/includes/quickstart-make-an-outbound-call-using-callautomation-python.md
