@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: outboundcalling
+
+server:
+  port: 8000
+
+acs:
+  connectionstring: "endpoint=https://service.germany.communication.azure.com/;accesskey="
+  basecallbackuri: "host.euw.devtunnels.ms:8000"
+  callerphonenumber: "+4444"
