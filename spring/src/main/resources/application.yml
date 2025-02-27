@@ -5,7 +5,13 @@ spring:
 server:
   port: 8000
 
+logging:
+  level:
+    root: INFO
+    com.microsoft.azure: DEBUG
+    com.example: DEBUG
+
 acs:
-  connectionstring: "endpoint=https://service.germany.communication.azure.com/;accesskey="
-  basecallbackuri: "host.euw.devtunnels.ms:8000"
-  callerphonenumber: "+4444"
+  connectionstring: "endpoint=https://xxx.yyy.communication.azure.com/;accesskey=zzz"
+  basecallbackuri: "aaa.bbb.devtunnels.ms:8000"
+  callerphonenumber: "+15555555555"
